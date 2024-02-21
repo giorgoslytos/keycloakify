@@ -3,7 +3,14 @@ import { assert } from "tsafe/assert";
 import type { Equals } from "tsafe";
 import { type ThemeType } from "keycloakify/bin/constants";
 
-export type KcContext = KcContext.Password | KcContext.Account | KcContext.Sessions | KcContext.Totp | KcContext.Applications | KcContext.Log;
+export type KcContext =
+    | KcContext.Password
+    | KcContext.Account
+    | KcContext.Sessions
+    | KcContext.Totp
+    | KcContext.Applications
+    | KcContext.Log
+    | KcContext.Resources;
 
 export declare namespace KcContext {
     export type Common = {
@@ -258,6 +265,48 @@ export declare namespace KcContext {
             }[];
         };
     };
+
+    export type Resources = Common & {
+        pageId: "resources.ftl";
+        authorization: {
+            resourcesWaitingApproval: Array<Resource>;
+            resources: Array<Resource>;
+            sharedResources: Array<Resource>;
+            resourcesWaitingOthersApproval: Array<Resource>;
+        };
+    };
+}
+
+interface Resource {
+    id: string;
+    name: string;
+    displayName?: string;
+    resourceServer: {
+        baseUri?: string;
+        name: string;
+    };
+    shares?: {
+        length: number;
+    };
+    ownerName?: string;
+    permissions?: Array<{
+        id: string;
+        requester: {
+            username: string;
+            email?: string;
+        };
+        scopes: Array<{
+            id: string;
+            scope?: {
+                name: string;
+                displayName?: string;
+            };
+            granted: boolean;
+        }>;
+        createdDate: {
+            datetime: string;
+        };
+    }>;
 }
 
 {
