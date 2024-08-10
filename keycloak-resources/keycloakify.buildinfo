@@ -1,8 +1,11 @@
 {
-  "keycloakifyVersion": "9.6.7",
-  "buildOptions": {
-    "loginThemeResourcesFromKeycloakVersion": "11.0.3",
-    "cacheDirPath": "../../../node_modules/.cache/keycloakify",
-    "npmWorkspaceRootDirPath": "../../.."
+  "destDirPath": "/home/runner/work/keycloakify/keycloakify/.storybook/static/keycloak-resources",
+  "keycloakifyVersion": "10.0.0-rc.131",
+  "buildContext": {
+    "loginThemeResourcesFromKeycloakVersion": "10.0.0-rc.131",
+    "cacheDirPath": "../../../node_modules/.cache/scripts",
+    "fetchOptions": {
+      "strictSSL": false
+    }
   }
 }
